@@ -5,9 +5,10 @@ type Category = 'math' | 'programming' | 'history' | 'science';
 
 export async function GET(
   req: Request,
-  { params }: { params: { categories: string } }
+  { params }: { params: Promise<{ categories: string }> }
 ) {
-  const category = params.categories.toLowerCase() as Category;
+  const { categories } = await params;
+  const category = categories.toLowerCase() as Category;
    console.log(category);
   if (!(category in quizzes)) {
     return NextResponse.json(
