@@ -9,7 +9,6 @@ export async function GET(
 ) {
   const { categories } = await params;
   const category = categories.toLowerCase() as Category;
-   console.log(category);
   if (!(category in quizzes)) {
     return NextResponse.json(
       { error: `No quizzes found for category '${category}'` },
